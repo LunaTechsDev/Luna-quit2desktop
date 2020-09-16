@@ -13,7 +13,7 @@
 -D analyzer-optimize 
 
 # Haxe Source Map
---debug
+# --debug
 # --no-inline
 # --no-opt
 # -D keep_inline_positions
@@ -24,6 +24,13 @@
 # For Compiling Separate JavaScript Files
 -main Main
 --each
+
+--next
+-D compileMV
+-js dist/Luna_Quit2DesktopMV.js
+
+--next
+-js dist/Luna_Quit2Desktop.js
 
 --next
 -D compileMV
