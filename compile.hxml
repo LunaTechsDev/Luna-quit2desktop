@@ -18,15 +18,16 @@
 # --no-opt
 # -D keep_inline_positions
 
-# RM Version for Conditional Compilation
-# -D compileMV
-
 --macro macros.MacroTools.includeJsLib("./src/Parameters.js")
 
 # Note you can call an hxml file inside an hxml file for build purposes.
 # For Compiling Separate JavaScript Files
+-main Main
 --each
 
 --next
+-D compileMV
+-js games/mv/js/plugins/Luna_Quit2Desktop.js
+
+--next
 -js games/mz/js/plugins/Luna_Quit2Desktop.js
--main Main
