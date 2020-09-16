@@ -11,7 +11,6 @@ class Window_Confirm extends Window_Command {
   }
   #else
   public function new(rect: Rectangle) {
-    super(0, 0);
     super(rect);
   }
   #end
