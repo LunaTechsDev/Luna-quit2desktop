@@ -25,6 +25,9 @@ class Scene_GameEnd {
       var self: Dynamic = Fn.self;
       oldCreate.call(self);
       self.createConfirmWindow();
+      self.createHelpWindow();
+      self._helpWindow.hide();
+      self._helpWindow.close();
     });
   }
 
@@ -44,7 +47,6 @@ class Scene_GameEnd {
       var confirmWindow = new Window_Confirm(rect);
       untyped self._confirmWindow = confirmWindow;
       confirmWindow.setHandler('ok', untyped self.onConfirm.bind(self));
-      // confirmWindow.hide();
       confirmWindow.close();
       self.addWindow(confirmWindow);
     });
@@ -53,6 +55,9 @@ class Scene_GameEnd {
   public static inline function quit2desktop() {
     Fn.setPrProp(RmScene_GameEnd, 'quit2desktop', () -> {
       var self: Dynamic = Fn.self;
+      self._helpWindow.show();
+      self._helpWindow.open();
+      self._helpWindow.setText('Are you sure you want to exit to desktop?');
       self._confirmWindow.open();
     });
   }
@@ -68,6 +73,7 @@ class Scene_GameEnd {
         SceneManager.exit();
       }
 
+      self._helpWindow.close();
       self._confirmWindow.activate();
     });
   }
