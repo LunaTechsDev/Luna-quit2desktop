@@ -74,7 +74,7 @@ class Scene_GameEnd {
       }
 
       self._helpWindow.close();
-      self._confirmWindow.activate();
+      self._commandWindow.activate();
     });
   }
 }
