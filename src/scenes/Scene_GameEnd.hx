@@ -10,8 +10,6 @@ import utils.Comment;
 import rm.scenes.Scene_GameEnd as RmScene_GameEnd;
 
 class Scene_GameEnd {
-  private var _self: Scene_GameEnd;
-
   public static inline function patch() {
     Comment.title('Scene_GameEnd');
     create();
