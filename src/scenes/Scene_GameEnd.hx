@@ -43,8 +43,14 @@ class Scene_GameEnd {
   public static inline function createConfirmWindow() {
     Fn.setPrProp(RmScene_GameEnd, 'createConfirmWindow', () -> {
       var self: RmScene_GameEnd = Fn.self;
+      #if compileMV
+      var confirmWindow = new Window_Confirm();
+      confirmWindow.x = self.__commandWindow.x;
+      confirmWindow.y = self.__commandWindow.y;
+      #else
       var rect = new Rectangle(self.__commandWindow.x, self.__commandWindow.y, 250, self.calcWindowHeight(2, true));
       var confirmWindow = new Window_Confirm(rect);
+      #end
       untyped self._confirmWindow = confirmWindow;
       confirmWindow.setHandler('ok', untyped self.onConfirm.bind(self));
       confirmWindow.close();
