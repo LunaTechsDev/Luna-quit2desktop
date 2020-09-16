@@ -21,6 +21,8 @@
 # RM Version for Conditional Compilation
 # -D compileMV
 
+--macro macros.MacroTools.includeJsLib("./src/Parameters.js")
+
 # Note you can call an hxml file inside an hxml file for build purposes.
 # For Compiling Separate JavaScript Files
 --each
