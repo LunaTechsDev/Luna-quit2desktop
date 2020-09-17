@@ -19,7 +19,8 @@ class Window_GameEnd {
     Fn.setPrProp(RM_Window_GameEnd, 'makeCommandList', () -> {
       var self: RM_Window_GameEnd = Fn.self;
       oldMakeCommandList.call(self);
-      self.__list.insert(1, {
+      var index: Int = Math.round(Params.gameEndPosition - 1);
+      self.__list.insert(index, {
         name: Params.gameEndText,
         symbol: 'toDesktop',
         enabled: true,
