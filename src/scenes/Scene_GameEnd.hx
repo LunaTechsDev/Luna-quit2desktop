@@ -61,6 +61,7 @@ class Scene_GameEnd {
   public static inline function quit2desktop() {
     Fn.setPrProp(RmScene_GameEnd, 'quit2desktop', () -> {
       var self: Dynamic = Fn.self;
+      self._commandWindow.close();
       self._helpWindow.show();
       self._helpWindow.open();
       self._helpWindow.setText('Are you sure you want to exit to desktop?');
@@ -80,6 +81,7 @@ class Scene_GameEnd {
       }
 
       self._helpWindow.close();
+      self._commandWindow.open();
       self._commandWindow.activate();
     });
   }

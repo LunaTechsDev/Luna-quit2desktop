@@ -2,7 +2,7 @@
  *
  *  Luna_Quit2Desktop.js
  * 
- *  Build Date: 9/16/2020
+ *  Build Date: 9/17/2020
  * 
  *  Made with LunaTea -- Haxe
  *
@@ -75,6 +75,7 @@ SOFTWARE
       Main.Params = utils_Parse.parseParameters(
         PluginManager.parameters("Luna_Quit2Desktop")
       );
+
       if (Main.Params.showOnTitle) {
         let oldMakeCommandList = Window_TitleCommand.prototype.makeCommandList;
         Window_TitleCommand.prototype.makeCommandList = function () {
@@ -136,6 +137,7 @@ SOFTWARE
             self.calcWindowHeight(2, true)
           )
         );
+
         self._confirmWindow = confirmWindow;
         confirmWindow.setHandler("ok", self.onConfirm.bind(self));
         confirmWindow.close();
@@ -143,6 +145,7 @@ SOFTWARE
       };
       Scene_GameEnd.prototype.quit2desktop = function () {
         let self = this;
+        self._commandWindow.close();
         self._helpWindow.show();
         self._helpWindow.open();
         self._helpWindow.setText("Are you sure you want to exit to desktop?");
@@ -157,6 +160,7 @@ SOFTWARE
           SceneManager.exit();
         }
         self._helpWindow.close();
+        self._commandWindow.open();
         return self._commandWindow.activate();
       };
     }
