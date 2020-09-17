@@ -10,7 +10,11 @@ class Main {
   public static var Params: Dynamic;
   
   public static function main() {
+    #if compileMV
+    var rawParams = PluginManager.parameters('Luna_Quit2DesktopMV');
+    #else
     var rawParams = PluginManager.parameters('Luna_Quit2Desktop');
+    #end
     Params = parseParameters(rawParams);
 
     Window_TitleCommand.patch();
