@@ -4,7 +4,6 @@ import rm.windows.Window_Command;
 import core.Types.JsFn;
 import utils.Fn;
 import Main.Params;
-import rm.managers.TextManager;
 import rm.windows.Window_GameEnd as RM_Window_GameEnd;
 
 class Window_GameEnd {
@@ -16,11 +15,16 @@ class Window_GameEnd {
   }
 
   public static inline function makeCommandList() {
+    var oldMakeCommandList: JsFn = Fn.getPrProp(RM_Window_GameEnd, 'makeCommandList');
     Fn.setPrProp(RM_Window_GameEnd, 'makeCommandList', () -> {
       var self: RM_Window_GameEnd = Fn.self;
-      self.addCommand(TextManager.toTitle, 'toTitle', true);
-      self.addCommand(Params.gameEndText, 'toDesktop', true);
-      self.addCommand(TextManager.cancel, 'cancel', true);
+      oldMakeCommandList.call(self);
+      self.__list.insert(1, {
+        name: Params.gameEndText,
+        symbol: 'toDesktop',
+        enabled: true,
+        ext: null
+      });
     });
   }
 
