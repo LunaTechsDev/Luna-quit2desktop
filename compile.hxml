@@ -34,7 +34,7 @@
 
 --next
 -D compileMV
--js games/mv/js/plugins/Luna_Quit2Desktop.js
+-js games/mv/js/plugins/Luna_Quit2DesktopMV.js
 
 --next
 -js games/mz/js/plugins/Luna_Quit2Desktop.js
