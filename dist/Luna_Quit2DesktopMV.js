@@ -153,7 +153,8 @@ SOFTWARE
         self._helpWindow.show();
         self._helpWindow.open();
         self._helpWindow.setText("Are you sure you want to exit to desktop?");
-        return self._confirmWindow.open();
+        self._confirmWindow.open();
+        return self._confirmWindow.activate();
       };
       Scene_GameEnd.prototype.onConfirm = function () {
         let self = this;

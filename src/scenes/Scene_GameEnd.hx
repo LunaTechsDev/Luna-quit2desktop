@@ -66,6 +66,7 @@ class Scene_GameEnd {
       self._helpWindow.open();
       self._helpWindow.setText('Are you sure you want to exit to desktop?');
       self._confirmWindow.open();
+      self._confirmWindow.activate();
     });
   }
 
