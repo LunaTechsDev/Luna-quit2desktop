@@ -19,6 +19,12 @@
  * @type text
  * @desc The command text that appears on the GameEnd scene.
  * @default To Desktop
+ * 
+ * @param gameEndPosition
+ * @text Game End Command Position
+ * @type number
+ * @desc The position of the quit command on the GameEnd scene.
+ * @default 2
  *
  * @param showOnTitle
  * @text Show on Title Scene
