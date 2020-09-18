@@ -2,7 +2,7 @@
  *
  *  Luna_Quit2Desktop
  * 
- *  Build Date: 9/17/2020 | 21:28
+ *  Build Date: 9/17/2020
  * 
  *  Made with LunaTea -- Haxe
  *
