@@ -6,7 +6,7 @@ import rm.windows.Window_GameEnd as RmWindow_GameEnd;
 
 class Window_GameEnd extends RmWindow_GameEnd {
   public override function makeCommandList() {
-    untyped _Winodw_GameEnd_prototype_makeCommandList.call(this);
+    untyped _Window_GameEnd_makeCommandList.call(this);
     var index: Int = Math.round(Params.gameEndPosition - 1);
     this._list.insert(index, {
       name: Params.gameEndText,
@@ -17,6 +17,6 @@ class Window_GameEnd extends RmWindow_GameEnd {
   }
 
   public override function maxItems() {
-    return untyped Window_Command.prototype.maxItem.call(this);
+    return untyped Window_Command.prototype.maxItems.call(this);
   }
 }

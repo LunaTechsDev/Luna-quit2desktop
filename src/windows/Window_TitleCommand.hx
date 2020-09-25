@@ -7,7 +7,7 @@ using Lambda;
 
 class Window_TitleCommand extends RmTitleCommand {
   public override function makeCommandList() {
-    untyped Window_TitleCommand_prototype_makeCommandList.call(this);
+    untyped _Window_TitleCommand_makeCommandList.call(this);
     this.addCommand(Params.titleCommandText, 'quit', true);
   }
 }
