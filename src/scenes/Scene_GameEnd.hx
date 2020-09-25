@@ -3,87 +3,57 @@ package scenes;
 import rm.managers.SceneManager;
 import windows.Window_Confirm;
 import rm.core.Rectangle;
-import utils.Fn;
-import core.Types.JsFn;
-import utils.Comment;
-
 import rm.scenes.Scene_GameEnd as RmScene_GameEnd;
 
-class Scene_GameEnd {
-  public static inline function patch() {
-    Comment.title('Scene_GameEnd');
-    create();
-    createCommandwindow();
-    createConfirmWindow();
-    quit2desktop();
-    onConfirm();
+class Scene_GameEnd extends RmScene_GameEnd {
+  public override function create() {
+    untyped _Scene_GameEn_prototype_create.call(self);
+    this.createConfirmWindow();
+    this.createHelpWindow();
+    this._helpWindow.hide();
+    this._helpWindow.close();
   }
 
-  public static inline function create() {
-    var oldCreate: JsFn = Fn.getPrProp(RmScene_GameEnd, 'create');
-    Fn.setPrProp(RmScene_GameEnd, 'create', () -> {
-      var self: Dynamic = Fn.self;
-      oldCreate.call(self);
-      self.createConfirmWindow();
-      self.createHelpWindow();
-      self._helpWindow.hide();
-      self._helpWindow.close();
-    });
+  public override function createCommandWindow() {
+    untyped _Scene_GameEnd_prototype_createCommandWindow.call(self);
+    this.__commandWindow.setHandler('toDesktop', untyped self.quit2desktop.bind(self));
   }
 
-  public static inline function createCommandwindow() {
-    var oldCreateCommandWindow: JsFn = Fn.getPrProp(RmScene_GameEnd, 'createCommandWindow');
-    Fn.setPrProp(RmScene_GameEnd, 'createCommandWindow', () -> {
-      var self: RmScene_GameEnd = Fn.self;
-      oldCreateCommandWindow.call(self);
-      self.__commandWindow.setHandler('toDesktop', untyped self.quit2desktop.bind(self));
-    });
+  public function createConfirmWindow() {
+    #if compileMV
+    var confirmWindow = new Window_Confirm();
+    confirmWindow.x = this._commandWindow.x;
+    confirmWindow.y = this._commandWindow.y;
+    #else
+    var rect = new Rectangle(this._commandWindow.x, this._commandWindow.y, 250, this.calcWindowHeight(2, true));
+    var confirmWindow = new Window_Confirm(rect);
+    #end
+    untyped this._confirmWindow = confirmWindow;
+    confirmWindow.setHandler('ok', untyped this.onConfirm);
+    confirmWindow.close();
+    this.addWindow(confirmWindow);
   }
 
-  public static inline function createConfirmWindow() {
-    Fn.setPrProp(RmScene_GameEnd, 'createConfirmWindow', () -> {
-      var self: RmScene_GameEnd = Fn.self;
-      #if compileMV
-      var confirmWindow = new Window_Confirm();
-      confirmWindow.x = self.__commandWindow.x;
-      confirmWindow.y = self.__commandWindow.y;
-      #else
-      var rect = new Rectangle(self.__commandWindow.x, self.__commandWindow.y, 250, self.calcWindowHeight(2, true));
-      var confirmWindow = new Window_Confirm(rect);
-      #end
-      untyped self._confirmWindow = confirmWindow;
-      confirmWindow.setHandler('ok', untyped self.onConfirm.bind(self));
-      confirmWindow.close();
-      self.addWindow(confirmWindow);
-    });
+  public function quit2desktop() {
+    this._commandWindow.close();
+    this._helpWindow.show();
+    this._helpWindow.open();
+    this._helpWindow.setText('Are you sure you want to exit to desktop?');
+    untyped this._confirmWindow.open();
+    untyped this._confirmWindow.activate();
   }
 
-  public static inline function quit2desktop() {
-    Fn.setPrProp(RmScene_GameEnd, 'quit2desktop', () -> {
-      var self: Dynamic = Fn.self;
-      self._commandWindow.close();
-      self._helpWindow.show();
-      self._helpWindow.open();
-      self._helpWindow.setText('Are you sure you want to exit to desktop?');
-      self._confirmWindow.open();
-      self._confirmWindow.activate();
-    });
-  }
+  public function onConfirm() {
+    var confirmWindow: Window_Confirm = untyped this._confirmWindow;
+    var choice = confirmWindow.currentSymbol();
+    confirmWindow.close();
 
-  public static inline function onConfirm() {
-    Fn.setPrProp(RmScene_GameEnd, 'onConfirm', () -> {
-      var self: Dynamic = Fn.self;
-      var confirmWindow: Window_Confirm = self._confirmWindow;
-      var choice = confirmWindow.currentSymbol();
-      confirmWindow.close();
+    if (choice == 'yes') {
+      SceneManager.exit();
+    }
 
-      if (choice == 'yes') {
-        SceneManager.exit();
-      }
-
-      self._helpWindow.close();
-      self._commandWindow.open();
-      self._commandWindow.activate();
-    });
+    this._helpWindow.close();
+    this._commandWindow.open();
+    this._commandWindow.activate();
   }
 }
