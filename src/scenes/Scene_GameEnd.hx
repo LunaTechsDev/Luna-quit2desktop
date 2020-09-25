@@ -7,7 +7,7 @@ import rm.scenes.Scene_GameEnd as RmScene_GameEnd;
 
 class Scene_GameEnd extends RmScene_GameEnd {
   public override function create() {
-    untyped _Scene_GameEn_prototype_create.call(self);
+    untyped _Scene_GameEnd_create.call(this);
     this.createConfirmWindow();
     this.createHelpWindow();
     this._helpWindow.hide();
@@ -15,8 +15,8 @@ class Scene_GameEnd extends RmScene_GameEnd {
   }
 
   public override function createCommandWindow() {
-    untyped _Scene_GameEnd_prototype_createCommandWindow.call(self);
-    this.__commandWindow.setHandler('toDesktop', untyped self.quit2desktop.bind(self));
+    untyped _Scene_GameEnd_createCommandWindow.call(this);
+    this.__commandWindow.setHandler('toDesktop', untyped this.quit2desktop);
   }
 
   public function createConfirmWindow() {
