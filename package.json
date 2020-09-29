@@ -1,6 +1,11 @@
 {
   "name": "luna-plugin",
   "version": "1.0.0",
+  "scripts": {
+    "build": "lix publish.hxml",
+    "clean:dist": "npx napkin -path='./dist/'",
+    "checkstyle": "npx haxelib run checkstyle -s ./src"
+  },
   "devDependencies": {
     "@lunatechs/lunatea-napkin": "^1.1.0"
   },
