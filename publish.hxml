@@ -1,0 +1,23 @@
+-lib LunaTea
+
+-cp src
+# JS Version 
+-D js-es=6
+
+--no-traces
+
+-dce full
+
+-D analyzer-optimize 
+
+--macro macros.MacroTools.includeJsLib("./src/Parameters.js")
+
+-main Main
+--each
+
+--next
+-D compileMV
+-js dist/Luna_Quit2DesktopMV.js
+
+--next
+-js dist/Luna_Quit2Desktop.js
